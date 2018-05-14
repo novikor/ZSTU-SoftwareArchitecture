@@ -3,10 +3,10 @@
  * Created by PhpStorm.
  * User: novikor
  * Date: 11.05.18
- * Time: 16:56
+ * Time: 16:57
  */
 
-class CsvAdapter implements AdapterInterface
+class JsonReader implements JsonReaderInterface
 {
     /**
      * @param string $sourceFile
@@ -15,7 +15,7 @@ class CsvAdapter implements AdapterInterface
      */
     public function loadData(string $sourceFile): array
     {
-        return fgetcsv(fopen($sourceFile, 'r'));
+        return json_decode(file_get_contents($sourceFile), true);
     }
 
 }

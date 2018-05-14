@@ -5,13 +5,14 @@
  * Date: 11.05.18
  * Time: 16:57
  */
-require_once 'AdapterInterface.php';
-require_once 'FileReader.php';
-require_once 'CsvAdapter.php';
-require_once 'JsonAdapter.php';
+require_once 'JsonReaderInterface.php';
+require_once 'CsvReaderInterface.php';
+require_once 'CsvReaderAdapter.php';
+require_once 'CsvReader.php';
+require_once 'JsonReader.php';
 
-$csvReader = new FileReader(new CsvAdapter());
-echo $csvReader->readFile('data/data.csv');
+$jsonReader = new JsonReader();
+echo print_r($jsonReader->loadData('data/data.json'), true);
 
-$jsonReader = new FileReader(new JsonAdapter());
-echo $jsonReader->readFile('data/data.json');
+$csvReaderAdapter = new CsvReaderAdapter(new CsvReader());
+echo print_r($csvReaderAdapter->loadData('data/data.csv'), true);
